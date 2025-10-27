@@ -202,3 +202,44 @@ main {
   .post-title { font-size: 1rem; }
   .post-card { padding: 12px; gap: 12px; }
 }
+
+.post-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.post-container .post-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.post-container .post-meta {
+    color: #64748b;
+    margin-bottom: 24px;
+}
+.post-container .post-body {
+    line-height: 1.6;
+    font-size: 1rem;
+}
+.post-container .post-body h1, .post-body h2, .post-body h3 {
+    margin-top: 1.2em;
+    color: #0f172a;
+}
+.post-container .post-body pre {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+.post-container .back-link {
+    display: inline-block;
+    margin-top: 24px;
+    text-decoration: none;
+    color: #2563eb;
+}
+.post-container .back-link:hover {
+            text-decoration: underline;
+}

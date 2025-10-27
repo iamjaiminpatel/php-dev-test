@@ -41,8 +41,6 @@ class PostIndex extends Controller
 
     protected function loadData(): void
     {
-        // TODO: Load posts from database here.
-
         $this->posts = Post::getAllPosts($this->db);
     }
 }

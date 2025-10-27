@@ -10,5 +10,9 @@ class Context
 
     public string $content = '';
 
-     public array $data = [];
+    public array $data = [];
+
+    public string $author = '';
+
+    public string $created_at = '';
 }
