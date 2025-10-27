@@ -34,8 +34,15 @@ class Checkout extends Layout
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="form-field">
+                                <label class="form-field__label form-field-checkbox__note">
+                                    <input type="checkbox" name="rise_n_shine_beta" value="1" id="rise_n_shine_beta"/>
+                                    With our “Rise & Shine” beta program, you get early access to new features, but they may not always work perfectly. You can change your beta preference at any time after you join.
+                                </label>
+                            </div>
                         </div>
                     </div>
+                   
                     <div class="frame">
                         <h2 class="frame__title">Account Details</h2>
                         <div class="frame__contents">
