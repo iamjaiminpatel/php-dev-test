@@ -148,3 +148,57 @@ main {
     display: flex;
     justify-content: center;
 }
+
+/* Heading */
+.page-title {
+  font-size: 2rem;
+  margin: 0 0 18px 0;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+/* Individual post card */
+.post-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  margin-top: 20px;
+}
+
+/* Title/metadata area fills remaining space */
+.post-meta {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Title link */
+.post-title {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0b1220;
+  margin-bottom: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Small description line (author / date) */
+.post-sub {
+  font-size: 0.9rem;
+  color: #6b7280; /* muted */
+}
+
+/* mobile adjustments */
+@media (max-width: 560px) {
+  .page-container { padding: 14px; margin: 20px auto; }
+  .post-right { display: none; }
+  .post-title { font-size: 1rem; }
+  .post-card { padding: 12px; gap: 12px; }
+}

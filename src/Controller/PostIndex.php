@@ -13,11 +13,24 @@ class PostIndex extends Controller
      */
     private array $posts = [];
 
+    protected \PDO $db;
+
+    /**
+     * @param \PDO  $db
+     * @param array<string> $params
+     */
+    public function __construct(\PDO $db)
+    {
+        $this->setDatabase($db);
+        $this->loadData();
+    }
+
     public function getContext(): Context
     {
         $context = new Context();
         $context->title = 'Posts';
         $context->content = strval(count($this->posts));
+        $context->data = $this->posts;
         return $context;
     }
 
@@ -29,6 +42,7 @@ class PostIndex extends Controller
     protected function loadData(): void
     {
         // TODO: Load posts from database here.
-        $this->posts = [];
+
+        $this->posts = Post::getAllPosts($this->db);
     }
 }

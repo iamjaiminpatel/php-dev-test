@@ -8,8 +8,31 @@ class PostIndex extends Layout
 {
     protected function renderPage(Context $context): string
     {
+
+        $post_data = '';
+        foreach ($context->data as $post) {
+            $post_data .= <<<HTML
+                        <a class="post-card" href="/posts/{$post['post_id']}">
+                            <div class="post-meta"> 
+                            <span class="post-title">{$post['title']}</span>
+                            </div>
+                            <div class="author-pill"> By {$post['author_name']}</div>
+                           
+                        </a>
+            
+                        HTML;
+        }
+
         return <<<HTML
-            <p>SHOW ALL {$context->content} POSTS HERE</p>
+                <div class="container">
+                    <h1 class="page-title">Published Posts</h1>
+
+                    <div class="posts-list">
+                        {$post_data};
+                    </div>
+                </div>
             HTML;
+
+        //return $post_data;
     }
 }
