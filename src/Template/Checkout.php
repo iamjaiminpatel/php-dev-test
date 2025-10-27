@@ -13,6 +13,9 @@ class Checkout extends Layout
     {
         $content = $this->header->render($context);
 
+        $request_scheme = isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : 'http'; 
+        $product_img = $request_scheme . '://' . $_SERVER['SERVER_NAME'] . '/' . basename(getcwd()) . '/highres-assets/product.jpg';
+
         return <<<HTML
                 <form method="post" accept-charset="utf-8" action="checkout" class="form" novalidate="novalidate">
                     <div class="frame">
@@ -28,7 +31,9 @@ class Checkout extends Layout
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Product Thumbnail</td>
+                                        <td>
+                                            <img class="product-image" src="{$product_img}" alt="Product image" loading="lazy"/>
+                                        </td>
                                         <td>Lorem Widget</td>
                                         <td>1</td>
                                     </tr>
