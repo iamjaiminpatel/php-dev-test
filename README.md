@@ -164,3 +164,10 @@ database.
 
 The DSN string in `src/Config.php` may need to be modified if you use a
 different database or do not use PostgreSQL with Docker Compose.
+
+
+## To check importer command execute below command
+
+```sh
+php src/Console.php import:posts
+```
