@@ -15,7 +15,7 @@ class PostImporterConsole
         $this->db = $db;
     }
 
-    public function execute(array $arguments = []): void
+    public function execute(): void
     {
         try {
 ;
@@ -35,9 +35,11 @@ class PostImporterConsole
 
     private function importFile(string $filePath): void
     {
-        $json = file_get_contents($filePath);
-        $data = json_decode($json, true);
+        $data = json_decode((string) file_get_contents($filePath), true);
 
+        /**
+         * @var array<string, mixed> $data
+         */
         if (!isset($data['id'], $data['title'], $data['body'], $data['author'])) {
             throw new Exception("Invalid JSON structure in file: $filePath");
         }
@@ -45,10 +47,21 @@ class PostImporterConsole
         $stmt = $this->db->prepare("SELECT 1 FROM Posts WHERE id = :id");
         $stmt->execute(['id' => $data['id']]);
 
+        /**
+         * @var array{
+         *     id: string,
+         *     title: string,
+         *     body: string,
+         *     author: string,
+         *     created_at: string,
+         *     modified_at: string
+         * } $data
+         */
         if ($stmt->fetch()) {
             echo "Skipping existing post: {$data['title']}\n";
             return;
         }
+
         $stmt = $this->db->prepare("
             INSERT INTO Posts (id, title, body, author, created_at, modified_at)
             VALUES (UNHEX(REPLACE(:id, '-', '')), :title, :body, UNHEX(REPLACE(:author, '-', '')), :created_at, :modified_at)

@@ -10,13 +10,16 @@ class PostIndex extends Layout
     {
 
         $post_data = '';
-        foreach ($context->data as $post) {
+        foreach ($context->data as $postData) {
+            /** @var array{post_id:string,title:string,author_name:string} $postData */
+            $post = (object) $postData;
+            
             $post_data .= <<<HTML
-                        <a class="post-card" href="/posts/{$post['post_id']}">
+                        <a class="post-card" href="/posts/{$post->id}">
                             <div class="post-meta"> 
-                            <span class="post-title">{$post['title']}</span>
+                            <span class="post-title">{$post->title}</span>
                             </div>
-                            <div class="author-pill"> By {$post['author_name']}</div>
+                            <div class="author-pill"> By {$post->author}</div>
                            
                         </a>
             
@@ -28,7 +31,7 @@ class PostIndex extends Layout
                     <h1 class="page-title">Published Posts</h1>
 
                     <div class="posts-list">
-                        {$post_data};
+                        {$post_data}
                     </div>
                 </div>
             HTML;

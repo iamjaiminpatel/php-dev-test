@@ -25,4 +25,4 @@ if (!$command || !isset($availableCommands[$command])) {
     exit;
 }
 
-$availableCommands[$command]->execute(array_slice($argv, 2));
+$availableCommands[$command]->execute();

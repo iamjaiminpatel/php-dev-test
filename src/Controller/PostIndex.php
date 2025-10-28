@@ -9,9 +9,13 @@ use silverorange\DevTest\Template;
 class PostIndex extends Controller
 {
     /**
-     * @var array<Post>
+     * @var array<int, \silverorange\DevTest\Model\Post> $posts
      */
     private array $posts = [];
+    /**
+     * @var array<string, mixed> $data
+     */
+    public array $data = [];
 
     protected \PDO $db;
 
@@ -19,7 +23,7 @@ class PostIndex extends Controller
      * @param \PDO  $db
      * @param array<string> $params
      */
-    public function __construct(\PDO $db)
+    public function __construct(\PDO $db, $params = [])
     {
         $this->setDatabase($db);
         $this->loadData();

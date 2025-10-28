@@ -10,6 +10,7 @@ class Context
 
     public string $content = '';
 
+    /** @var array<string, mixed> */
     public array $data = [];
 
     public string $author = '';

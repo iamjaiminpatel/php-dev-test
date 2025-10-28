@@ -9,12 +9,7 @@ use silverorange\DevTest\Template;
 
 class PostDetails extends Controller
 {
-    /**
-     * TODO: When this property is assigned in loadData this PHPStan override
-     * can be removed.
-     *
-     * @phpstan-ignore property.unusedType
-     */
+    
     private ?Model\Post $post = null;
 
     protected \PDO $db;
@@ -23,9 +18,9 @@ class PostDetails extends Controller
      * @param \PDO  $db
      * @param array<string> $params
      */
-    public function __construct(\PDO $db)
+    public function __construct(\PDO $db, $params)
     {
-        $this->setDatabase($db)->setParams(explode('/', $_SERVER['REQUEST_URI']));
+        $this->setDatabase($db)->setParams($params);
         $this->loadData();
     }
 
@@ -68,6 +63,6 @@ class PostDetails extends Controller
 
     protected function loadData(): void
     {
-        $this->post = Model\Post::getPostDetails($this->db, $this->params[2]);
+        $this->post = Model\Post::getPostDetails($this->db, $this->params[0]);
     }
 }

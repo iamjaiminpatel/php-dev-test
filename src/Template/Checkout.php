@@ -13,9 +13,23 @@ class Checkout extends Layout
     {
         $content = $this->header->render($context);
 
-        $request_scheme = isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : 'http'; 
-        $product_img = $request_scheme . '://' . $_SERVER['SERVER_NAME'] . '/' . basename(getcwd()) . '/highres-assets/product.jpg';
+       $request_scheme = isset($_SERVER['REQUEST_SCHEME']) && is_string($_SERVER['REQUEST_SCHEME'])
+            ? $_SERVER['REQUEST_SCHEME']
+            : 'http';
 
+        $server_name = isset($_SERVER['SERVER_NAME']) && is_string($_SERVER['SERVER_NAME'])
+            ? $_SERVER['SERVER_NAME']
+            : 'localhost';
+
+        $cwd = getcwd();
+        $base_dir = is_string($cwd) ? basename($cwd) : '';
+
+        $product_img = sprintf(
+            '%s://%s/%s/highres-assets/product.jpg',
+            $request_scheme,
+            $server_name,
+            $base_dir
+        );
         return <<<HTML
                 <form method="post" accept-charset="utf-8" action="checkout" class="form" novalidate="novalidate">
                     <div class="frame">
